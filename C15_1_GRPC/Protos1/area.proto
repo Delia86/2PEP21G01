@@ -1,0 +1,17 @@
+syntax= "proto3";
+
+package C15_1_GRPC;
+
+service AreaCalculator {
+  rpc CalculateArea (AreaParams) returns (AreaResult) {}
+}
+
+message AreaParams {
+  int32 lenght=1;
+  int32 width=2;
+
+}
+
+message AreaResult {
+  float result=1;
+}
