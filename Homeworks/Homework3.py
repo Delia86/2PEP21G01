@@ -15,19 +15,17 @@ from collections import UserList,Counter
 class Example(UserList):
 
     def get_counter(self):
-        my_counter = Counter(my_list)
-        return my_counter
+        self.my_counter= Counter(my_list)
+        return self.my_counter
 
 
     def append(self, item):
-            global y
             super(Example,self).append(item)
-            y=self.get_counter()
+            self.my_counter[item]+=1
 
     def pop(self,i) :
-            global y
             super(Example, self).pop(i)
-            y = self.get_counter()
+            self.my_counter[i]-= 1
 
 
 
