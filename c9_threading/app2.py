@@ -1,5 +1,4 @@
 import random
-import threading
 import socket
 from threading import Thread
 
@@ -73,14 +72,17 @@ class Client(Connector):
         self.sock.send(bytes(str(self.prime), encoding='UTF-8'))
         message = str(self.sock.recv(4096), encoding='UTF-8')
         print('Client ' + message)
-        if message=='okay':
+        if message == 'okay':
             self.generate_base()
             self.sock.send(bytes(str(self.base), encoding='UTF-8'))
         message = str(self.sock.recv(4096), encoding='UTF-8')
         print('Client ' + message)
-        if message=='okay':
-            self.generate_local_secret()
-
+        if message == 'okay':
+            msg = self.generate_local_secret()
+            self.sock.send(bytes(str(msg), encoding='UTF-8'))
+        message = str(self.sock.recv(4096), encoding='UTF-8')
+        if message:
+            self.get_secret(int(message))
 
 
 class Server(Connector):
@@ -104,10 +106,13 @@ class Server(Connector):
             connection.send(bytes('okay', encoding='UTF-8'))
             message = str(connection.recv(4096), encoding='UTF-8')
             print('Server ' + message)
-            self.base=int(message)
+            self.base = int(message)
             connection.send(bytes('okay', encoding='UTF-8'))
-
-
+            message = self.generate_local_secret()
+            connection.send(bytes(str(message), encoding='UTF-8'))
+            message = str(connection.recv(4096), encoding='UTF-8')
+            if message:
+                self.get_secret(int(message))
 
     def stop(self):
         self.th1.join()

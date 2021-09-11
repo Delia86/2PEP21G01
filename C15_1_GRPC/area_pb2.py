@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\narea.proto\x12\nC15_1_GRPC\"+\n\nAreaParams\x12\x0e\n\x06lenght\x18\x01 \x01(\x05\x12\r\n\x05width\x18\x02 \x01(\x05\"\x1c\n\nAreaResult\x12\x0e\n\x06result\x18\x01 \x01(\x02\x32S\n\x0e\x41reaCalculator\x12\x41\n\rCalculateArea\x12\x16.C15_1_GRPC.AreaParams\x1a\x16.C15_1_GRPC.AreaResult\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\narea.proto\x12\nC15_1_GRPC\"+\n\nAreaParams\x12\x0e\n\x06length\x18\x01 \x01(\x05\x12\r\n\x05width\x18\x02 \x01(\x05\"\x1c\n\nAreaResult\x12\x0e\n\x06result\x18\x01 \x01(\x02\"\x1c\n\x0cSquareParams\x12\x0c\n\x04side\x18\x01 \x01(\x05\x32\x9a\x01\n\x0e\x41reaCalculator\x12\x41\n\rCalculateArea\x12\x16.C15_1_GRPC.AreaParams\x1a\x16.C15_1_GRPC.AreaResult\"\x00\x12\x45\n\x0f\x43\x61lculateSquare\x12\x18.C15_1_GRPC.SquareParams\x1a\x16.C15_1_GRPC.AreaResult\"\x00\x62\x06proto3'
 )
 
 
@@ -34,7 +34,7 @@ _AREAPARAMS = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='lenght', full_name='C15_1_GRPC.AreaParams.lenght', index=0,
+      name='length', full_name='C15_1_GRPC.AreaParams.length', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -95,8 +95,41 @@ _AREARESULT = _descriptor.Descriptor(
   serialized_end=99,
 )
 
+
+_SQUAREPARAMS = _descriptor.Descriptor(
+  name='SquareParams',
+  full_name='C15_1_GRPC.SquareParams',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='side', full_name='C15_1_GRPC.SquareParams.side', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=101,
+  serialized_end=129,
+)
+
 DESCRIPTOR.message_types_by_name['AreaParams'] = _AREAPARAMS
 DESCRIPTOR.message_types_by_name['AreaResult'] = _AREARESULT
+DESCRIPTOR.message_types_by_name['SquareParams'] = _SQUAREPARAMS
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 AreaParams = _reflection.GeneratedProtocolMessageType('AreaParams', (_message.Message,), {
@@ -113,6 +146,13 @@ AreaResult = _reflection.GeneratedProtocolMessageType('AreaResult', (_message.Me
   })
 _sym_db.RegisterMessage(AreaResult)
 
+SquareParams = _reflection.GeneratedProtocolMessageType('SquareParams', (_message.Message,), {
+  'DESCRIPTOR' : _SQUAREPARAMS,
+  '__module__' : 'area_pb2'
+  # @@protoc_insertion_point(class_scope:C15_1_GRPC.SquareParams)
+  })
+_sym_db.RegisterMessage(SquareParams)
+
 
 
 _AREACALCULATOR = _descriptor.ServiceDescriptor(
@@ -122,8 +162,8 @@ _AREACALCULATOR = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=101,
-  serialized_end=184,
+  serialized_start=132,
+  serialized_end=286,
   methods=[
   _descriptor.MethodDescriptor(
     name='CalculateArea',
@@ -131,6 +171,16 @@ _AREACALCULATOR = _descriptor.ServiceDescriptor(
     index=0,
     containing_service=None,
     input_type=_AREAPARAMS,
+    output_type=_AREARESULT,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='CalculateSquare',
+    full_name='C15_1_GRPC.AreaCalculator.CalculateSquare',
+    index=1,
+    containing_service=None,
+    input_type=_SQUAREPARAMS,
     output_type=_AREARESULT,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,

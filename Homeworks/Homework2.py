@@ -30,13 +30,14 @@ class RetriveAdress():
             l_dict={keys[i]:values[i] for i in range(len(keys))}
             print(dict)
             list_of_dict=[]
-            dict.copy=l_dict.copy()
-            list_of_dict.append(dict.copy)
+            l2_dict=l_dict.copy()
+            list_of_dict.append(l2_dict.copy)
             return list_of_dict
 
 
 
 
-address=RetriveAdress()
-print(address.get_Ip())
-print(address.get_Route_Table())
+if __name__ == '__main__':
+    address=RetriveAdress()
+    print(address.get_Ip())
+    print(address.get_Route_Table())

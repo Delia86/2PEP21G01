@@ -1,0 +1,15 @@
+syntax= "proto3";
+
+package C15_1_GRPC;
+
+service Ping {
+  rpc PingIP (Destination) returns (stream Response) {}
+}
+
+message Destination {
+  string dst = 1;
+}
+
+message Response {
+   string rsp = 1;
+}

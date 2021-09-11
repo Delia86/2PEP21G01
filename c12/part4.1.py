@@ -56,6 +56,8 @@ class MenuWindow():
         self.searched_text = self.search_box.get()
         self.result = self.text.search(self.searched_text, "0.0", tkinter.END)
 
+        self.receive_button=tkinter.Button
+
     def get_directory(self):
         i=0
         for dir in os.listdir():

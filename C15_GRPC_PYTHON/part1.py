@@ -1,0 +1,1 @@
+python rpc_tools.protoc-I./protos --python_out=.protos/hello.proto

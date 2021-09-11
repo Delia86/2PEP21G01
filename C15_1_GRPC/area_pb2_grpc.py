@@ -19,6 +19,11 @@ class AreaCalculatorStub(object):
                 request_serializer=area__pb2.AreaParams.SerializeToString,
                 response_deserializer=area__pb2.AreaResult.FromString,
                 )
+        self.CalculateSquare = channel.unary_unary(
+                '/C15_1_GRPC.AreaCalculator/CalculateSquare',
+                request_serializer=area__pb2.SquareParams.SerializeToString,
+                response_deserializer=area__pb2.AreaResult.FromString,
+                )
 
 
 class AreaCalculatorServicer(object):
@@ -30,12 +35,23 @@ class AreaCalculatorServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CalculateSquare(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_AreaCalculatorServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'CalculateArea': grpc.unary_unary_rpc_method_handler(
                     servicer.CalculateArea,
                     request_deserializer=area__pb2.AreaParams.FromString,
+                    response_serializer=area__pb2.AreaResult.SerializeToString,
+            ),
+            'CalculateSquare': grpc.unary_unary_rpc_method_handler(
+                    servicer.CalculateSquare,
+                    request_deserializer=area__pb2.SquareParams.FromString,
                     response_serializer=area__pb2.AreaResult.SerializeToString,
             ),
     }
@@ -61,6 +77,23 @@ class AreaCalculator(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/C15_1_GRPC.AreaCalculator/CalculateArea',
             area__pb2.AreaParams.SerializeToString,
+            area__pb2.AreaResult.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CalculateSquare(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/C15_1_GRPC.AreaCalculator/CalculateSquare',
+            area__pb2.SquareParams.SerializeToString,
             area__pb2.AreaResult.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

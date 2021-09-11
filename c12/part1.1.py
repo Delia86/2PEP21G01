@@ -13,7 +13,7 @@ class MenuWindow():
         main_menu =tkinter.Menu(root_window)
         self.root_window.config(menu=main_menu)
 
-ascade(label="View", menu=view_menu)
+cascade(label="View", menu=view_menu)
 
 send_menu =tkinter.Menu(main_menu)
 main_menu.add_cascade(label="Send", menu=send_menu)
